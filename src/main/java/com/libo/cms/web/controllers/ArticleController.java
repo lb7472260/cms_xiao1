@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.libo.cms.domain.Article;
 import com.libo.cms.domain.Comment;
+
 import com.libo.cms.service.ArticleService;
 import com.libo.cms.service.CommentService;
+import com.libo.cms.service.SpecialService;
 
 @Controller
 public class ArticleController {
@@ -22,6 +24,9 @@ public class ArticleController {
 	@Resource
 	CommentService commentService;
 	
+	@Resource
+	SpecialService specialService;
+	
 	//根据Id查文章
 	@RequestMapping("/article/{id}")
 	public String queryArticleById(@PathVariable Integer id,Model m){
@@ -30,9 +35,13 @@ public class ArticleController {
 		
 		//查看评论 comments
 		List<Comment> list = commentService.queryCommentById(id);
-		m.addAttribute("comments", list);
+		m.addAttribute("comments", list);				
 		return "blog";
 	}
+	
+	
+	
+	
 
 
 }

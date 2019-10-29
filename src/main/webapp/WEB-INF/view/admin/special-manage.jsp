@@ -55,6 +55,7 @@
           <h1>专题管理</h1>
           <hr>
    <!-- 表格 -->
+
          <button type="button"  class="btn btn-success" onclick="location='/admin/toaddSpecial'">添加专题</button>
           <table class="table table-bordered">
 				<tr>
@@ -62,7 +63,7 @@
 					<td>专题文章</td>
 					<td>操作</td>
 				</tr>
-				<c:forEach var="special" items="${specialList}">
+				<c:forEach var="special" items="${listSpecial}">
 					<tr>
 						<td>${special.title}</td>
 						<td>${special.middleList.size()}篇</td>

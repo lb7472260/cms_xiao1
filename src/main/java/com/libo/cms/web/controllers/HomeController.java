@@ -12,13 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.libo.cms.core.Page;
 import com.libo.cms.domain.Article;
 import com.libo.cms.domain.Category;
 import com.libo.cms.domain.Channel;
 import com.libo.cms.domain.Slide;
+
 import com.libo.cms.service.ArticleService;
 import com.libo.cms.service.SlideService;
+
 
 /**
  * 说明:首页
@@ -36,6 +39,8 @@ public class HomeController {
 	
 	@Resource
 	private SlideService slideService;
+	
+	
 	
 	@RequestMapping({"/", "/index", "/home"})
 	public String home(
@@ -88,6 +93,10 @@ public class HomeController {
 			model.addAttribute("channel", new Channel(channel));
 		}
 		model.addAttribute("category", category);
+
+		
+		
+		
 		
 		return "home";
 	}

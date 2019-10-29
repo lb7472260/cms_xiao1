@@ -61,7 +61,7 @@
 					<table class="table table-bordered">
 						<tr>
 							<td>专题标题</td>
-							<td><input type="text" name="title" value=${special.title}/></td>
+							<td><input type="text" name="title" value="${special.title}"/></td>
 						</tr>
 						<tr>
 							<td>专题摘要</td>

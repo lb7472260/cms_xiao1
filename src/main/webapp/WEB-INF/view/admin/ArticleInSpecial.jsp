@@ -68,7 +68,7 @@
   					<tr>
 	  					<td>${middle.article.id}</td>
 	  					<td>${middle.article.title}</td>
-	  					<td>${middle.article.created}</td>
+	  					<td><fmt:formatDate value="${middle.article.created}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 	  					<td>
 							<button  class="btn btn-success" type="button" onclick="removeArticle(${middle.article.id},${special.id})">移除</button>
 						</td>
@@ -152,9 +152,10 @@
 	}
 
 	function removeArticle(articleID,specialID){
-		alert(articleID);
+		
 		if(confirm("您要移除ID为"+articleID+"的文章吗?")){
 			$.post("/admin/removeArticle",{"articleID":articleID,"specialID":specialID},function(data){
+					
 				if(data){
 					alert("移除成功!");
 					location="/admin/getSpecial?specialID="+specialID;

@@ -140,8 +140,27 @@
 						</ol>
 					</div>
 				</div>
+				
+				<!-- 专题 -->
+				<c:forEach items="${listSpecial}" var="special">
+					<div class="panel panel-default"  style="border:1px #ccc solid;margin-top:20px;">
+					  <div class="panel-heading" style="background-color:#ccc">
+					    <h3 class="panel-title" align="center">专题:${special.title}</h3>
+					  </div>
+					  <div>${special.abstracts}</div>
+					  <div class="panel-body">
+					  	<c:forEach items="${special.middleList}" var="middle">
+						    <p><a href="/article/getArticle?articleID=${middle.article.id}">${middle.article.title}</a></p>
+					  	</c:forEach>
+					  </div>
+					</div>
+				</c:forEach>
+				
 			</div>
+			
+			
 		</div>
+			
 	</div>
 	
 	<br/>

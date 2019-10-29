@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libo.cms.dao.SpecialMapper">
+
+	
+
+  <resultMap type="com.libo.cms.domain.Special" id="specialMapping">
+  	<id column="id" property="id"/>
+  	<result column="title" property="title"/>
+  	<result column="abstracts" property="abstracts"/>
+  	<result column="created" property="created"/>
+  	<collection property="middleList" ofType="com.libo.cms.domain.Special_Article" column="id" select="com.libo.cms.dao.SpecialMapper.listSpecial_Article"></collection>
+  </resultMap>
+  
+  <resultMap type="com.libo.cms.domain.Special_Article" id="special_ArticleMapping">
+  	<id column="aid" property="aid"/>
+  	<id column="sid" property="sid"/>
+  	<result  column="aid" property="article.id"/>
+  	<result  column="title" property="article.title"/>
+  	<result  column="created" property="article.created"/>
+  </resultMap>
+  <select id="listSpecial" resultMap="specialMapping" >
+  	select * from cms_special
+  </select>
+  
+  <select id="listSpecial_Article" parameterType="int" resultMap="special_ArticleMapping">
+  	SELECT sid,aid,title,created FROM cms_special_article  s LEFT JOIN cms_article a ON a.`id`=s.`aid` WHERE s.`sid`=#{value} limit 0,5
+  </select>
+<!-- 获取专题列表 -->
+  <select id="getSpecial" resultMap="specialMapping" parameterType="int">
+  	select * from cms_special where id = #{value}
+  </select>
+<!--   删除文章 -->	
+  <delete id="removeArticle" parameterType="map">
+  	
+  	DELETE FROM cms_special_article WHERE sid=#{specialID} AND aid = #{articleID}
+  </delete>
+<!--   添加文章 -->
+  <insert id="addArticle" parameterType="map">
+  	insert into cms_special_article values(#{specialID},#{articleID})
+  </insert>
+  
+ <!-- 添加专题 -->
+  <insert id="addSpecial" parameterType="com.libo.cms.domain.Special">
+  	insert into cms_special values(#{id},#{title},#{abstracts},#{created})
+  </insert>
+  
+  <update id="updateSpecial" parameterType="com.libo.cms.domain.Special">
+  	update cms_special set title=#{title},abstracts=#{abstracts} where id=#{id}
+  </update>
+  
+</mapper>
